@@ -1,11 +1,11 @@
 
 ##### GENERAL #####
-- Logo?
+- Logo? -> da würde ich mich mal dran versuchen, sowas macht mir Spaß :)
 - clean Design
 - monochrome Design inside projects
 
 ##### LANDING PAGE #####
-- a photo as background image  - Eins der Drohnen Aufnahmen??? 
+- a photo as background image  - Eins der Drohnen Aufnahmen??? was für Drohnenaufnahmen? Klingt aber gut. 
 
 
 #### PROFILE PAGE

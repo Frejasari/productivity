@@ -13,6 +13,7 @@
   - name {type: String, required: true}
   - description {type: String}
   - startDate {type: Date}
+  - plannedCompletion {type: Date}
   - _collaborators: [_id]
   - _taskPackages: [_id]
   # ------- MVP ------- 
@@ -25,10 +26,11 @@
   - _id
   - name {type: String, required: true}
   - description {type: String}
+  - deadline {type: Date}
   - status {type: String, enum:["Inactive", "Active", "Done"]}
   - toDos [ToDos] (-> Is this possible?!)
 
 # ToDo
   - _id
-  - description {type: String, required: true}
+  - task {type: String, required: true}
   - isDone {type: Boolean, required: true}
