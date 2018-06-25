@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const Project = require('../models/Project');
 const User = require('../models/User');
@@ -13,19 +14,25 @@ const projects = [
     name: "Clean the apartment",
     description: "Wash the dishes, do laundry, and mop the floors.",
     startDate: Date.now(),
-    plannedCompletion: Date.now()
+    plannedCompletion: Date.now(),
+    _collaborators: [],
+    _taskPackages: []
   },
  {
     name: "Finish Daily exercise from ironhack",
     description: "Finish my exercise.",
     startDate: Date.now(),
-    plannedCompletion: Date.now()
+    plannedCompletion: Date.now(),
+    _collaborators: [],
+    _taskPackages: []
   },
   {
     name: "Some Project",
     description: "bla bla.",
     startDate: Date.now(),
-    plannedCompletion: Date.now()
+    plannedCompletion: Date.now(),
+    _collaborators: [],
+    _taskPackages: []
   } 
 ]
 
@@ -91,8 +98,7 @@ const users = [
   {
     username: "Anna",
     email: "anna.testuser@abc.de",
-    password: "ABCD",
-    imgUrl: "/pics/default-silhouette" // add default!
+    password: "ABCD"
   },
   {
     username: "Lisa",
@@ -109,11 +115,47 @@ const users = [
 ];
 
 // seed the database:
-Promise.all([Project.create(projects), Package.create(packages), User.create(users)])
-.then(values => {
-  console.log("Database was successfully seeded!"); 
-  mongoose.connection.close()
-})
+// Promise.all([Project.create(projects), Package.create(packages), User.create(users)])
+// .then(values => {
+//   console.log("Database was successfully seeded!"); 
+//   mongoose.connection.close()
+// })
+// .catch((err) => { 
+//   console.log(err);
+// })
+
+User.create(users)
+.then(users => {
+  
+  // add user-ids as collaborators to projects array
+  projects[0]._collaborators.push(users[0]._id, users[1]._id, users[2]._id)
+  projects[1]._collaborators.push(users[0]._id, users[1]._id)
+  projects[2]._collaborators.push(users[0]._id)
+
+  // push project into projects array of each teammate
+  Project.create(projects)
+  .then(projects => {
+    projects.forEach(project => {
+      project._collaborators.forEach(userId => {
+        User.update({ _id: userId }, { $push : { _projects: project}})
+        .then(response => console.log("Project ids were added to user!"))
+        .catch((err)   => console.log(err))
+      })
+    })
+    // add packages to the projects they belong to
+    Package.create(packages)
+    .then(package => {    
+      Project.update({ name: projects[0].name}, { $push : { _taskPackages: package[0]} })
+      .then(response => {
+        Project.update({ name: projects[0].name}, { $push : { _taskPackages: package[1]} })
+        .then(response => {
+          Project.update({ name: projects[1].name}, { $push : { _taskPackages: package[2]} })
+          .then(response => console.log("Database was successfully seeded!"))
+        })
+      })
+    })
+  })
+})     
 .catch((err) => { 
   console.log(err);
 })
