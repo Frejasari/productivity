@@ -92,7 +92,11 @@ app.use("/", index);
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
 
+const profileRoutes = require("./routes/profile");
+app.use("/profile", profileRoutes);
 
+const projectRoutes = require("./routes/project");
+app.use("/project", projectRoutes);
 //#endregion
 
 module.exports = app;
