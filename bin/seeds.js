@@ -103,19 +103,19 @@ const users = [
     username: "Anna",
     email: "anna.testuser@abc.de",
     password: bcrypt.hashSync("ABCD", salt), 
-    imgUrl: "/pics/default-silhouette"
+    imgUrl: "/images/default-silhouette.jpg"
   },
   {
     username: "Lisa",
     email: "lisa.testuser@abc.de",
     password: bcrypt.hashSync("123", salt),
-    imgUrl: "/pics/default-silhouette" 
+    imgUrl: "/images/default-silhouette.jpg" 
   },
   {
     username: "Meg",
     email: "meg.testuser@abc.de",
     password: bcrypt.hashSync("ImADog", salt),
-    imgUrl: "/pics/default-silhouette" 
+    imgUrl: "/images/default-silhouette.jpg" 
   }
 ];
 
