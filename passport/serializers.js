@@ -5,12 +5,12 @@ passport.serializeUser((loggedInUser, cb) => {
 });
 
 passport.deserializeUser((userIdFromSession, cb) => {
-  User.findById(userIdFromSession, (err, userDocument) => {
-    if (err) {
+  User.findById(userIdFromSession)
+    .then(user => {
+      cb(null, user);
+    })
+    .catch(err => {
       cb(err);
       return;
-    }
-
-    cb(null, userDocument);
-  });
+    });
 });
