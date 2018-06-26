@@ -1,1 +1,27 @@
-PROFILE
+{{!-- display the user's information (name, ...) and the user's projects --}}
+
+<div class="flexContainer">
+  <div>
+    <img class="profilePic" src={{imgUrl}} />
+  </div>
+  <div>
+    <h2>{{user.username}}</h2>
+    <p>{{user.email}}</p>
+  </div>
+  <div>
+    <p>Zahnrad</p>
+  </div>
+</div>
+<div id="UserProjects" class="flexContainer">
+  {{log  user._projectss}}
+
+  {{#each user._projects}}
+    <li class="displayBox project">
+      <a href="/project/{{this._id}}">{{this.name}}</a>
+    </li>
+  {{/each}}
+
+</div>
+<div id="UserIdeas" class="flexContainer">
+    <div class="displayBox idea">Idea 1</div>
+</div>
