@@ -7,8 +7,8 @@ const projectSchema = new Schema(
     description: { type: String },
     startDate: { type: Date },
     plannedCompletion: { type: Date },
-    _collaborators: [Schema.Types.ObjectId],
-    _taskPackages: [Schema.Types.ObjectId]
+    _collaborators: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    _taskPackages: [{ type: Schema.Types.ObjectId, ref: "Package" }]
   },
   {
     timestamps: {

@@ -6,6 +6,8 @@ passport.serializeUser((loggedInUser, cb) => {
 
 passport.deserializeUser((userIdFromSession, cb) => {
   User.findById(userIdFromSession)
+    .populate("_projects")
+    .populate("_ideas")
     .then(user => {
       cb(null, user);
     })

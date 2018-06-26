@@ -7,8 +7,8 @@ const userSchema = new Schema(
     email: { type: String, unique: true },
     password: { type: String, required: true },
     imgUrl: { type: String, default: "/images/default-silhouette.jpg" },
-    _projects: [Schema.Types.ObjectId],
-    _ideas: [Schema.Types.ObjectId]
+    _projects: [{ type: Schema.Types.ObjectId, ref: "Project" }],
+    _ideas: [{ type: Schema.Types.ObjectId, ref: "Package" }]
   },
   {
     timestamps: {
