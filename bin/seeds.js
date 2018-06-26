@@ -94,23 +94,28 @@ const packages = [
   },
 ]
 
+// Bcrypt to encrypt passwords
+const bcrypt = require("bcrypt");
+const salt = bcrypt.genSaltSync(10);
+
 const users = [
   {
     username: "Anna",
     email: "anna.testuser@abc.de",
-    password: "ABCD"
+    password: bcrypt.hashSync("ABCD", salt), 
+    imgUrl: "/pics/default-silhouette"
   },
   {
     username: "Lisa",
     email: "lisa.testuser@abc.de",
-    password: "123",
-    imgUrl: "/pics/default-silhouette" // add default!
+    password: bcrypt.hashSync("123", salt),
+    imgUrl: "/pics/default-silhouette" 
   },
   {
     username: "Meg",
     email: "meg.testuser@abc.de",
-    password: "ImADog",
-    imgUrl: "/pics/default-silhouette" // add default!
+    password: bcrypt.hashSync("ImADog", salt),
+    imgUrl: "/pics/default-silhouette" 
   }
 ];
 
