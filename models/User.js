@@ -7,7 +7,8 @@ const userSchema = new Schema(
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     imgUrl: { type: String }, // add default!
-    _projects: [Schema.Types.ObjectId]
+    _projects: [Schema.Types.ObjectId],
+    _ideas: [Schema.Types.ObjectId]
   },
   {
     timestamps: {

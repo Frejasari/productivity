@@ -103,31 +103,25 @@ const users = [
     username: "Anna",
     email: "anna.testuser@abc.de",
     password: bcrypt.hashSync("ABCD", salt), 
-    imgUrl: "/images/default-silhouette.jpg"
+    imgUrl: "/images/default-silhouette.jpg", 
+    _ideas:[]
   },
   {
     username: "Lisa",
     email: "lisa.testuser@abc.de",
     password: bcrypt.hashSync("123", salt),
-    imgUrl: "/images/default-silhouette.jpg" 
+    imgUrl: "/images/default-silhouette.jpg",
+    _ideas:[] 
   },
   {
     username: "Meg",
     email: "meg.testuser@abc.de",
     password: bcrypt.hashSync("ImADog", salt),
-    imgUrl: "/images/default-silhouette.jpg" 
+    imgUrl: "/images/default-silhouette.jpg",
+    _ideas:[] 
   }
 ];
 
-// seed the database:
-// Promise.all([Project.create(projects), Package.create(packages), User.create(users)])
-// .then(values => {
-//   console.log("Database was successfully seeded!"); 
-//   mongoose.connection.close()
-// })
-// .catch((err) => { 
-//   console.log(err);
-// })
 
 User.create(users)
 .then(users => {
@@ -155,12 +149,22 @@ User.create(users)
         Project.update({ name: projects[0].name}, { $push : { _taskPackages: package[1]} })
         .then(response => {
           Project.update({ name: projects[1].name}, { $push : { _taskPackages: package[2]} })
-          .then(response => console.log("Database was successfully seeded!"))
-        })
+          .then(response => {
+            // add some packages to users as ideas
+            User.update({ username: users[0].username}, { $push: { _ideas: package[0]} })
+            .then(response => {
+              console.log("response",response)
+              User.update({ username: users[1].username}, { $push: { _ideas: package[1]} })
+             .then(response => { 
+                console.log("Database was successfully seeded!")
+              })
+            })
+          })
+        })   
       })
-    })
+    })    
   })
-})     
+})      
 .catch((err) => { 
   console.log(err);
 })
