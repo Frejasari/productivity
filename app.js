@@ -83,6 +83,12 @@ app.use(
 );
 app.use(flash());
 require("./passport")(app);
+
+app.use(function(req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
+
 //#endregion
 
 //#region Routes
