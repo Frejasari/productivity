@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema(
   {
     username: { type: String, unique: true, required: true },
-    email: { type: String, unique: true, required: true },
+    email: { type: String, unique: true },
     password: { type: String, required: true },
-    imgUrl: { type: String }, // add default!
+    imgUrl: { type: String, default: "/images/default-silhouette.jpg" },
     _projects: [Schema.Types.ObjectId],
     _ideas: [Schema.Types.ObjectId]
   },
