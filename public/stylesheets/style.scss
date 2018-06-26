@@ -2,7 +2,59 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
 a {
   color: #00B7FF;
 }
+.flexContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profileTop{
+  padding: 0% 10%
+}
+.flexColumn{
+  flex-direction: column;
+  justify-content: center;
+}
+#settingsIcon{
+  width: 25px;
+}
+#profilePic{
+  width: 50px;
+  height: auto;
+}
+.profileSiteLi{
+  list-style-type: none;
+  width: 100%;
+  padding: 0% 20%;
+  margin: 0;
+}
+.projectsList{
+  padding: 0px 0px;
+  text-align: center;
+}
+.project{
+  background: rgb(43, 157, 165);
+  margin: 2%;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+.project:focus,.project:active{
+  outline: none !important;
+  box-shadow: none;
+}
+.profileList{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.idea{
+  background: rgb(167, 168, 168);
+  margin: 2%;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+

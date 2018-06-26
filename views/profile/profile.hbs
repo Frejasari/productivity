@@ -1,27 +1,34 @@
 {{!-- display the user's information (name, ...) and the user's projects --}}
-
+{{!-- header block --}}
 <div class="flexContainer">
-  <div>
-    <img class="profilePic" src={{imgUrl}} />
+  <div class="profileTop">
+    <img id="profilePic" src={{user.imgUrl}} />
   </div>
-  <div>
+  <div class="profileTop">
     <h2>{{user.username}}</h2>
     <p>{{user.email}}</p>
   </div>
-  <div>
-    <p>Zahnrad</p>
+  <div class="profileTop">
+    <img id="settingsIcon" src="/images/Zahnrad.gif" />
   </div>
 </div>
-<div id="UserProjects" class="flexContainer">
-  {{log  user._projectss}}
-
+{{!-- middle block --}}
+<div class="flexContainer flexColumn">
+  <ul id="profileListContainer" class="profileList">
   {{#each user._projects}}
-    <li class="displayBox project">
-      <a href="/project/{{this._id}}">{{this.name}}</a>
-    </li>
+    <li class="profileSiteLi">
+      <a class="btn btn-primary btn-block project" href="/project/{{this._id}}" role="button">{{this.name}}</a>
+    </li>  
   {{/each}}
-
+  </ul>
 </div>
-<div id="UserIdeas" class="flexContainer">
-    <div class="displayBox idea">Idea 1</div>
+{{!-- bottom block --}}
+<div class="flexContainer flexColumn">
+  <ul id="profileListContainer" class="profileList">
+  {{#each user._ideas}}
+    <li class="profileSiteLi">
+      <a class="btn btn-primary btn-block idea" href="/project/{{this._id}}" role="button">{{this.name}}</a>
+    </li>  
+  {{/each}}
+  </ul>
 </div>
