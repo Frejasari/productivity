@@ -1,1 +1,21 @@
-PROJECT
+{{!-- display all task packages belonging to the project --}}
+
+<div class="flexContainer flexColumn">
+  <h1>{{project.name}}</h1>
+
+  {{#each packages}}
+  {{!-- gives package ids --}}
+  {{log this}}
+  <div class="container packageContainer">
+    <h3>{{this.name}}</h3>
+    <div>
+    <ul class="todosDiv">
+      {{#each this.toDos}}
+      <li>{{this.task}}</li>
+      {{/each}}
+    </ul>
+    </div>
+  </div>
+  {{/each}}
+
+</div>

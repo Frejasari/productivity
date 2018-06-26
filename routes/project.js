@@ -4,9 +4,12 @@ const Project = require("../models/Project");
 const TaskPackage = require("../models/TaskPackage");
 
 router.get("/:projectId", (req, res, next) => {
-  res.render("project/project");
-  // Project.findById(req.params.project).then(project => {
-  // });
+  Project.findById(req.params.projectId).then(project => {
+    TaskPackage.find({'_id': { $in: project._taskPackages}})
+    .then( packages => {
+      res.render("project/project",{project, packages});
+    });
+  });
 });
 
 module.exports = router;
