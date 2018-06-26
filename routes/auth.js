@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const authRoutes = express.Router();
 const User = require("../models/User");
+const ensureLogin = require("connect-ensure-login");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -10,12 +11,14 @@ const bcryptSalt = 10;
 authRoutes.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/profile/",
     failureRedirect: "/",
     failureFlash: true,
     passReqToCallback: true
   })
 );
+
+// authRoute;
 
 //#region signup
 authRoutes.get("/signup", (req, res, next) => {
