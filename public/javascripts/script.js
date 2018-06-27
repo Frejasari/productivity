@@ -1,11 +1,7 @@
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-    let startDatePicker = document.getElementById("project-start-date");
-    if (startDatePicker) startDatePicker.value = new Date().toDateInputValue();
-  },
-  false
-);
+$(document).ready(function() {
+  let startDatePicker = document.getElementById("project-start-date");
+  if (startDatePicker) startDatePicker.value = new Date().toDateInputValue();
+});
 
 Date.prototype.toDateInputValue = function() {
   var local = new Date(this);
