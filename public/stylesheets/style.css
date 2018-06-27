@@ -6358,6 +6358,7 @@ a {
 
 .overlay {
   position: fixed;
+  display: none;
   width: 100%;
   height: 100%;
   top: 0;
@@ -6366,7 +6367,6 @@ a {
   bottom: 0;
   background-color: rgba(111, 114, 117, 0.5);
   z-index: 2;
-  display: flex;
   justify-content: center;
   align-items: center; }
 
@@ -6379,7 +6379,6 @@ h4.card-title {
   margin-bottom: 1.5rem !important; }
 
 .form-control:focus {
-  outline: none;
   box-shadow: none !important;
   border: 1px solid #ccc !important; }
 
@@ -6387,5 +6386,8 @@ h4.card-title {
   .content-overlay {
     padding-left: 0;
     padding-right: 0; } }
+
+#new-project-container {
+  display: none; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,6 +1,15 @@
 $(document).ready(function() {
-  let startDatePicker = document.getElementById("project-start-date");
-  if (startDatePicker) startDatePicker.value = new Date().toDateInputValue();
+  let startDatePicker = $("#project-start-date");
+  let createNewProjectButton = $(".new-project");
+  let overlayContainer = $("#overlay-container");
+
+  createNewProjectButton.click(() => {
+    overlayContainer.css("display", "flex");
+    $("#new-project-container").show();
+  });
+
+
+  if (startDatePicker) startDatePicker.val(new Date().toDateInputValue());
 });
 
 Date.prototype.toDateInputValue = function() {
