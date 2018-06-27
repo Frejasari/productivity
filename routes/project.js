@@ -19,8 +19,9 @@ router.get("/new-project", (req, res, next) => {
 });
 
 router.post("/new-project", (req, res, next) => {
-  createAndSaveNewProject(req.body, req.user._id).then(_ => {
-    res.redirect("/profile");
+  createAndSaveNewProject(req.body, req.user._id).then(result => {
+    const [newProject, currUser] = result;
+    res.redirect(`/project/show/${newProject._id}`);
   });
 });
 
