@@ -1,61 +1,62 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
-.flexContainer{
+.flexContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.profileTop{
-  padding: 0% 10%
+.profileTop {
+  padding: 0% 10%;
 }
-.flexColumn{
+.flexColumn {
   flex-direction: column;
   justify-content: center;
 }
-#settingsIcon{
+#settingsIcon {
   width: 25px;
 }
-#profilePic{
+#profilePic {
   width: 50px;
   height: auto;
 }
-.profileSiteLi{
+.profileSiteLi {
   list-style-type: none;
   width: 100%;
   padding: 0% 20%;
   margin: 0;
 }
-.projectsList{
+.projectsList {
   padding: 0px 0px;
   text-align: center;
 }
-.project{
+.project {
   background: rgb(43, 157, 165);
   margin: 2%;
   outline: none;
   border: none;
   width: 100%;
 }
-.project:focus,.project:active{
+.project:focus,
+.project:active {
   outline: none !important;
   box-shadow: none;
 }
-.profileList{
+.profileList {
   width: 100%;
   margin: 0;
   padding: 0;
 }
-.idea{
+.idea {
   background: rgb(167, 168, 168);
   margin: 2%;
   outline: none;
   border: none;
   width: 100%;
 }
-.packageContainer{
+.packageContainer {
   background: rgb(70, 140, 221);
   border-radius: 10px;
   margin: 1% 20%;
@@ -64,12 +65,17 @@ a {
   flex-direction: column;
   justify-content: center;
 }
-.todosDiv{
+.todosDiv {
   text-align: left;
 }
-.doneLi{
+.doneLi {
   color: gray;
 }
-.checkbox-teal [type="checkbox"]:checked+label:before {
+.checkbox-teal [type="checkbox"]:checked + label:before {
   border-color: transparent #009688 #009688 transparent;
+}
+
+// Overlay
+
+.overlay {
 }
