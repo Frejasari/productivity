@@ -34,36 +34,27 @@ function createAndSaveNewProject(project, userId) {
 }
 //#endregion
 
-router.post('/checkboxChecked/:packageId', (req, res, next) => {
-
-  console.log("CHECK HERE:", req.body);
-
-  TaskPackage.findById(req.params.packageId)
-  .then(taskPackage => {
-
-    // modify tasks accordingly:
-    taskPackage.toDos
-
-    taskPackage.save()
-    console.log("taskPackage:", taskPackage);
-    // res.redirect("/project/"+req.params.packageId) // redirect to projecdID site
-  })
-  // TaskPackage.findByIdAndUpdate(req.params.packageId)
-
-  // change the value of isDone property of correct todo-item in the database:
-
-  // let myIds = Object.keys(req.body) //potentieller array mit ids
-  // let status = req.body
-
-  // TaskPackage.toDos.findById(myId).then( todo => {
-  //   console.log("TASK PACKAGE TODO SEARCH: ",todo);
-  // });
-
- // what's my task package? how do I find one todo in there? 
- // render view with updated information
-
-//  res.render("/project/project");
-
+router.post("/modifyContent/:projectId/:packageId", (req, res, next) => {
+  let deletedItems = [];
+  let checkedItems = [];
+  for (var key in req.body) {
+    if (key.includes("delete")) deletedItems.push(key.slice(7));
+    else checkedItems.push(key);
+  }
+  TaskPackage.findById(req.params.packageId).then(taskPackage => {
+    let toDos = taskPackage.toDos;
+    for (let i = toDos.length - 1; i >= 0; i--) {
+      let todo = toDos[i];
+      todo.isDone = false;
+      if (deletedItems.includes(todo._id.toString())) {
+        toDos.id(todo._id).remove();
+        continue;
+      } else if (checkedItems.includes(todo._id.toString())) todo.isDone = true;
+    }
+    taskPackage.save().then(taskPackage => {
+      res.redirect(`/project/show/${req.params.projectId}`);
+    });
+  });
 });
 
 module.exports = router;
