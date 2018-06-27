@@ -15,20 +15,20 @@
 {{!-- middle block --}}
 <div class="flexContainer flexColumn">
   <ul id="profileListContainer" class="profileList">
-  {{#each user._projects}}
-    <li class="profileSiteLi">
-      <a class="btn btn-primary btn-block project" href="/project/{{this._id}}" role="button">{{this.name}}</a>
-    </li>  
-  {{/each}}
+    {{#each user._projects}}
+      <li class="profileSiteLi">
+        <a class="btn btn-primary btn-block project" href="/project/show/{{this._id}}" role="button">{{this.name}}</a>
+      </li>
+    {{/each}}
   </ul>
 </div>
 {{!-- bottom block --}}
 <div class="flexContainer flexColumn">
   <ul id="profileListContainer" class="profileList">
-  {{#each user._ideas}}
-    <li class="profileSiteLi">
-      <a class="btn btn-primary btn-block idea" href="/project/{{this._id}}" role="button">{{this.name}}</a>
-    </li>  
-  {{/each}}
+    {{#each user._ideas}}
+      <li class="profileSiteLi">
+        <a class="btn btn-primary btn-block idea" href="/project/idea/{{this._id}}" role="button">{{this.name}}</a>
+      </li>
+    {{/each}}
   </ul>
 </div>
