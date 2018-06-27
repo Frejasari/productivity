@@ -67,3 +67,9 @@ a {
 .todosDiv{
   text-align: left;
 }
+.doneLi{
+  color: gray;
+}
+.checkbox-teal [type="checkbox"]:checked+label:before {
+  border-color: transparent #009688 #009688 transparent;
+}
