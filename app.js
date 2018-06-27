@@ -19,7 +19,7 @@ const flash = require("connect-flash");
 mongoose.Promise = Promise;
 mongoose
   .connect(
-    "mongodb://localhost/productivity",
+    process.env.MONGODB_URI,
     { useMongoClient: true }
   )
   .then(() => {

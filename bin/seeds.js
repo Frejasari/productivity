@@ -1,13 +1,12 @@
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
-const Project = require('../models/Project');
-const User = require('../models/User');
-const Package = require('../models/TaskPackage');
+const Project = require("../models/Project");
+const User = require("../models/User");
+const Package = require("../models/TaskPackage");
 
-const dbName = 'productivity';
-mongoose.connect(`mongodb://localhost/${dbName}`);
-
+const dbName = "productivity";
+mongoose.connect(process.env.MONGODB_URI);
 
 const projects = [
   {
@@ -18,7 +17,7 @@ const projects = [
     _collaborators: [],
     _taskPackages: []
   },
- {
+  {
     name: "Finish Daily exercise from ironhack",
     description: "Finish my exercise.",
     startDate: Date.now(),
@@ -33,8 +32,8 @@ const projects = [
     plannedCompletion: Date.now(),
     _collaborators: [],
     _taskPackages: []
-  } 
-]
+  }
+];
 
 const packages = [
   {
@@ -71,7 +70,7 @@ const packages = [
       },
       {
         task: "hang everything on rack to dry",
-        isDone: false 
+        isDone: false
       }
     ]
   },
@@ -88,11 +87,11 @@ const packages = [
       },
       {
         task: "read iteration 3 task",
-        isDone: false 
+        isDone: false
       }
     ]
-  },
-]
+  }
+];
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -102,69 +101,60 @@ const users = [
   {
     username: "Anna",
     email: "anna.testuser@abc.de",
-    password: bcrypt.hashSync("ABCD", salt), 
-    imgUrl: "/images/default-silhouette.jpg", 
-    _ideas:[]
+    password: bcrypt.hashSync("ABCD", salt),
+    imgUrl: "/images/default-silhouette.jpg",
+    _ideas: []
   },
   {
     username: "Lisa",
     email: "lisa.testuser@abc.de",
     password: bcrypt.hashSync("123", salt),
     imgUrl: "/images/default-silhouette.jpg",
-    _ideas:[] 
+    _ideas: []
   },
   {
     username: "Meg",
     email: "meg.testuser@abc.de",
     password: bcrypt.hashSync("ImADog", salt),
     imgUrl: "/images/default-silhouette.jpg",
-    _ideas:[] 
+    _ideas: []
   }
 ];
 
-
 User.create(users)
-.then(users => {
-  
-  // add user-ids as collaborators to projects array
-  projects[0]._collaborators.push(users[0]._id, users[1]._id, users[2]._id)
-  projects[1]._collaborators.push(users[0]._id, users[1]._id)
-  projects[2]._collaborators.push(users[0]._id)
+  .then(users => {
+    // add user-ids as collaborators to projects array
+    projects[0]._collaborators.push(users[0]._id, users[1]._id, users[2]._id);
+    projects[1]._collaborators.push(users[0]._id, users[1]._id);
+    projects[2]._collaborators.push(users[0]._id);
 
-  // push project into projects array of each teammate
-  Project.create(projects)
-  .then(projects => {
-    projects.forEach(project => {
-      project._collaborators.forEach(userId => {
-        User.update({ _id: userId }, { $push : { _projects: project}})
-        .then(response => console.log("Project ids were added to user!"))
-        .catch((err)   => console.log(err))
-      })
-    })
-    // add packages to the projects they belong to
-    Package.create(packages)
-    .then(package => {    
-      Project.update({ name: projects[0].name}, { $push : { _taskPackages: package[0]} })
-      .then(response => {
-        Project.update({ name: projects[0].name}, { $push : { _taskPackages: package[1]} })
-        .then(response => {
-          Project.update({ name: projects[1].name}, { $push : { _taskPackages: package[2]} })
-          .then(response => {
-            // add some packages to users as ideas
-            User.update({ username: users[0].username}, { $push: { _ideas: package[0]} })
-            .then(response => {
-              console.log("response",response)
-              User.update({ username: users[1].username}, { $push: { _ideas: package[1]} })
-             .then(response => { 
-                console.log("Database was successfully seeded!")
-              })
-            })
-          })
-        })   
-      })
-    })    
+    // push project into projects array of each teammate
+    Project.create(projects).then(projects => {
+      projects.forEach(project => {
+        project._collaborators.forEach(userId => {
+          User.update({ _id: userId }, { $push: { _projects: project } })
+            .then(response => console.log("Project ids were added to user!"))
+            .catch(err => console.log(err));
+        });
+      });
+      // add packages to the projects they belong to
+      Package.create(packages).then(package => {
+        Project.update({ name: projects[0].name }, { $push: { _taskPackages: package[0] } }).then(response => {
+          Project.update({ name: projects[0].name }, { $push: { _taskPackages: package[1] } }).then(response => {
+            Project.update({ name: projects[1].name }, { $push: { _taskPackages: package[2] } }).then(response => {
+              // add some packages to users as ideas
+              User.update({ username: users[0].username }, { $push: { _ideas: package[0] } }).then(response => {
+                console.log("response", response);
+                User.update({ username: users[1].username }, { $push: { _ideas: package[1] } }).then(response => {
+                  console.log("Database was successfully seeded!");
+                });
+              });
+            });
+          });
+        });
+      });
+    });
   })
-})      
-.catch((err) => { 
-  console.log(err);
-})
+  .catch(err => {
+    console.log(err);
+  });
