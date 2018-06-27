@@ -8,6 +8,13 @@ $(document).ready(function() {
     $("#new-project-container").show();
   });
 
+  overlayContainer.click(function(e) {
+    if (e.target === this) {
+      overlayContainer.hide();
+      $("#new-project-container").hide();
+      // overlayContainer.children().hide(); WHY IS IT NOT WORKING?
+    }
+  });
 
   if (startDatePicker) startDatePicker.val(new Date().toDateInputValue());
 });
