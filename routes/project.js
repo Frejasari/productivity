@@ -34,4 +34,36 @@ function createAndSaveNewProject(project, userId) {
 }
 //#endregion
 
+router.post('/checkboxChecked/:packageId', (req, res, next) => {
+
+  console.log("CHECK HERE:", req.body);
+
+  TaskPackage.findById(req.params.packageId)
+  .then(taskPackage => {
+
+    // modify tasks accordingly:
+    taskPackage.toDos
+
+    taskPackage.save()
+    console.log("taskPackage:", taskPackage);
+    // res.redirect("/project/"+req.params.packageId) // redirect to projecdID site
+  })
+  // TaskPackage.findByIdAndUpdate(req.params.packageId)
+
+  // change the value of isDone property of correct todo-item in the database:
+
+  // let myIds = Object.keys(req.body) //potentieller array mit ids
+  // let status = req.body
+
+  // TaskPackage.toDos.findById(myId).then( todo => {
+  //   console.log("TASK PACKAGE TODO SEARCH: ",todo);
+  // });
+
+ // what's my task package? how do I find one todo in there? 
+ // render view with updated information
+
+//  res.render("/project/project");
+
+});
+
 module.exports = router;

@@ -4,15 +4,24 @@
   <h1>{{project.name}}</h1>
 
   {{#each packages}}
-  {{!-- gives package ids --}}
-  {{log this}}
   <div class="container packageContainer">
     <h3>{{this.name}}</h3>
     <div>
+    <form action="/project/checkboxChecked/{{this._id}}" method="POST">
     <ul class="todosDiv">
       {{#each this.toDos}}
-      <li>{{this.task}}</li>
+          <div class="form-check checkbox-teal">
+        {{#if this.isDone}}
+            {{!-- add reaction to checkbox being checked here --}}
+            <input type="checkbox" class="form-check-input" checked="checked" name={{this._id}} value="true">
+        {{else}}
+            <input type="checkbox" class="form-check-input" name={{this._id}} value="true">
+        {{/if}} 
+          <label class="form-check-label">{{this.task}}</label>
+        </div>
       {{/each}}
+        <button type="submit" class="btn btn-outline-light">Save</button>
+    </form>
     </ul>
     </div>
   </div>
