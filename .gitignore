@@ -7,4 +7,8 @@ npm-debug.log
 # Environment Variables should NEVER be published
 .env
 
+style.css
+
+style.css.map
+
 package-lock.json

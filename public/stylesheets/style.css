@@ -6288,7 +6288,7 @@ a {
 .flexContainer {
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: stretch; }
 
 .profileTop {
   padding: 0% 10%; }
