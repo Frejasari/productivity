@@ -1,30 +1,31 @@
 {{!-- display all task packages belonging to the project --}}
 
-<div class="flexContainer flexColumn">
-  <h1>{{project.name}}</h1>
-
-  {{#each packages}}
-  <div class="container packageContainer">
-    <h3>{{this.name}}</h3>
-    <div>
-    <form action="/project/checkboxChecked/{{this._id}}" method="POST">
-    <ul class="todosDiv">
-      {{#each this.toDos}}
-          <div class="form-check checkbox-teal">
-        {{#if this.isDone}}
-            {{!-- add reaction to checkbox being checked here --}}
-            <input type="checkbox" class="form-check-input" checked="checked" name={{this._id}} value="true">
-        {{else}}
-            <input type="checkbox" class="form-check-input" name={{this._id}} value="true">
-        {{/if}} 
-          <label class="form-check-label">{{this.task}}</label>
+<h1>{{project.name}}</h1>
+<div class="container-fluid">
+  <div class="row">
+    {{#each packages}}
+      <div class="col-sm-6 col-xl-4">
+        <div class=" card bg-light">
+          <div class="card-body">
+            <h4>{{this.name}}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            {{#each toDos}}
+              <div class="list-group-item">
+                {{!-- <div class="form-check"></div> --}}
+                {{#if isDone}}
+                  {{!-- add reaction to checkbox being checked here --}}
+                  <input type="checkbox" checked="checked" id= {{_id}} name= {{_id}} value="true">
+                {{else}}
+                  <input type="checkbox" id= {{_id}} name= {{_id}} value="true">
+                {{/if}}
+                <label class="form-check-label" for= {{_id}}>{{task}}</label>
+              </div>
+            {{/each}}
+          </ul>
         </div>
-      {{/each}}
-        <button type="submit" class="btn btn-outline-light">Save</button>
-    </form>
-    </ul>
-    </div>
+      </div>
+    {{/each}}
   </div>
-  {{/each}}
 
 </div>
