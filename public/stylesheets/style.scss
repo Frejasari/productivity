@@ -1,20 +1,15 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
-body{
-  background-image: url("/images/landingPagePic.jpg");
-  background-size: 100vw 100vh;
-  background-repeat: no-repeat;
-}
 a {
   color: #00b7ff;
 }
 .flexContainer {
   display: flex;
   justify-content: center;
-  align-items: baseline;
+  align-items: center;
 }
 .profileTop {
-  padding: 2% 1% 0% 1%;
+  padding: 0% 10%;
 }
 .flexColumn {
   flex-direction: column;
@@ -126,7 +121,6 @@ h4.card-title {
   background-color: #50858b !important;
   display: none;
 }
-<<<<<<< HEAD
 
 .top-buffer {
   margin-top: 20px;
@@ -135,7 +129,6 @@ h4.card-title {
 .non-resize {
   resize: none;
 }
-=======
 .myNavItem{
   color: grey;
   align-self: center;
@@ -144,4 +137,3 @@ h4.card-title {
 .myNavItem:hover{
   color: #bbc1c7;
 }
->>>>>>> added settings icon to layout
