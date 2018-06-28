@@ -20,19 +20,40 @@ router.get("/user-settings/:userId", (req, res, next) => {
 });
 
 router.post("/user-settings/:userId", (req, res, next) => {
-  // save changes in dtbase:
 
+  // Bcrypt to encrypt passwords
+  const bcrypt = require("bcrypt");
+  const salt = bcrypt.genSaltSync(10);
 
+  User.findById(req.params.userId).then(user => {
+    
+  // check, if password was correct:
+  if(!bcrypt.compareSync(req.body.password, user.password)){
 
+    // send error message!!
+    console.log("NOT CORRECT PASSWORD");
 
-  console.log("REQ BODY: ",req.body);
-  // { username: 'Anna',
-  // email: 'anna.testuser@abc.de',
-  // newPassword: '',
-  // newPasswordConfirm: '',
-  // imgUrl: '/images/default-silhouette.jpg' }
+  // check, if two new passwords are equal:
+  }else if(req.body.newPassword !== req.body.newPasswordConfirm){
+    
+    // send error message!!
+    console.log("ENTERED NEW PASSWORDS ARE NOT EQUAL!!");
 
-  res.redirect("/profile");
+  }else{
+    // change user properties and save in db
+    user.username = req.body.username;
+    user.email    = req.body.email;  
+    user.imgUrl   = req.body.imgUrl;
+    user.password = bcrypt.hashSync(req.body.newPassword, salt);
+
+    user.save();
+
+    res.redirect("/profile");
+  }
+  })
+  .catch(err => {
+    console.log(err);
+  });
 });
 
 module.exports = router;
