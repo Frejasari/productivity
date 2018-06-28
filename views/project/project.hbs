@@ -1,5 +1,3 @@
-{{!-- display all task packages belonging to the project --}}
-
 <div class="row align-items-center">
   <h1 class="col-12 col-md-6 text-center ">{{project.name}}</h1>
   <div class="col-6 col-md-3 text-center">
@@ -7,7 +5,7 @@
     {{!-- TODO : ADD MEMBER --}}
   </div>
   <div class="col-6 col-md-3 text-center">
-    <a class="btn btn-outline-secondary btn-project-view" href="/project/add-member">Add Member</a>
+    <a class="btn btn-outline-secondary btn-project-view" href="project/add-member">Add Member</a>
   </div>
 </div>
 <div class="row">
@@ -15,8 +13,9 @@
     <div class="col-sm-6 col-xl-4 top-buffer">
       <div class=" card bg-light">
         <div class="card-header card-to-dos-header">
-          <h4>{{this.name}}</h5>
-
+          <h4 class="d-inline">{{this.name}}</h4>
+          <a class="font-weight-light float-right small align-baseline" data-toggle="modal" href="#delete-popup-{{this._id}}">DELETE</a>
+          {{> deletepackagedialog this}}
         </div>
         <form action="/project/modifyContent/{{@root.project._id}}/{{this._id}}" method="POST">
           <ul class="list-group list-group-flush card-to-dos">
