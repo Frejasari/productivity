@@ -14,7 +14,6 @@ router.get("/show/:projectId", (req, res, next) => {
 
 //#region create new Project
 router.get("/new-project", (req, res, next) => {
-  console.log("NEW PROJECT!");
   res.render("project/newproject");
 });
 
@@ -37,21 +36,34 @@ function createAndSaveNewProject(project, userId) {
 router.post("/modifyContent/:projectId/:packageId", (req, res, next) => {
   let deletedItems = [];
   let checkedItems = [];
+  let values = [];
+  let newTodo;
+
   for (var key in req.body) {
     if (key.includes("delete")) deletedItems.push(key.slice(7));
+    else if (key.includes("value")) values.push({ _id: key.slice(6), task: req.body[key] });
+    else if (key === "new-todo") newTodo = { task: req.body[key] };
     else checkedItems.push(key);
   }
+
   TaskPackage.findById(req.params.packageId).then(taskPackage => {
     let toDos = taskPackage.toDos;
     for (let i = toDos.length - 1; i >= 0; i--) {
       let todo = toDos[i];
       todo.isDone = false;
-      if (deletedItems.includes(todo._id.toString())) {
+      let currId = todo._id.toString();
+      if (deletedItems.includes(currId)) {
         toDos.id(todo._id).remove();
         continue;
       } else if (checkedItems.includes(todo._id.toString())) todo.isDone = true;
+      values.forEach(value => {
+        if (value._id === currId) {
+          todo.task = value.task;
+        }
+      });
     }
-    taskPackage.save().then(taskPackage => {
+    toDos.push(newTodo);
+    taskPackage.save().then(_ => {
       res.redirect(`/project/show/${req.params.projectId}`);
     });
   });
