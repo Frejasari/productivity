@@ -39,6 +39,8 @@ router.post("/modifyContent/:projectId/:packageId", (req, res, next) => {
   let values = [];
   let newTodo;
 
+  console.log("BODY WITH TEXTAREA", req.body);
+
   for (var key in req.body) {
     if (key.includes("delete")) deletedItems.push(key.slice(7));
     else if (key.includes("value")) values.push({ _id: key.slice(6), task: req.body[key] });
@@ -62,7 +64,8 @@ router.post("/modifyContent/:projectId/:packageId", (req, res, next) => {
         }
       });
     }
-    toDos.push(newTodo);
+    if (newTodo.task) toDos.push(newTodo);
+
     taskPackage.save().then(_ => {
       res.redirect(`/project/show/${req.params.projectId}`);
     });

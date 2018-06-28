@@ -1,47 +1,49 @@
 {{!-- display all task packages belonging to the project --}}
 
-<h1>{{project.name}}</h1>
 {{log project._id}}
-<div class="container-fluid">
-  <div class="row">
-    {{#each packages}}
-      <div class="col-sm-6 col-xl-4">
-        <div class=" card bg-light">
-          <div class="card-body">
-            <h4>{{this.name}}</h5>
+  <div class="container-fluid">
+    <div class="row">
+      <h1 class="col text-center ">{{project.name}}</h1>
+    </div>
+    <div class="row">
+      {{#each packages}}
+        <div class="col-sm-6 col-xl-4 top-buffer">
+          <div class=" card bg-light">
+            <div class="card-body">
+              <h4>{{this.name}}</h5>
 
-          </div>
-          <form action="/project/modifyContent/{{@root.project._id}}/{{this._id}}" method="POST">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item to-do-item">
-                <textarea type="text" class="form-control" name="new-todo" placeholder="Next stuff!"></textarea>
-              </li>
-              {{#each toDos}}
+            </div>
+            <form action="/project/modifyContent/{{@root.project._id}}/{{this._id}}" method="POST">
+              <ul class="list-group list-group-flush">
                 <li class="list-group-item to-do-item">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <input type="checkbox" {{#if isDone}} checked="checked" {{/if}} id= {{_id}} name= {{_id}} value="true">
-                      </div>
-                    </div>
-                    <input type="text" class="form-control" value="{{task}}" name="value-{{_id}}">
-                    <div class="input-group-append">
-                      <div class="input-group-text">
-                        <input type="checkbox" id="delete-{{_id}}" name="delete-{{_id}}" value="true">
-                        <label class="form-check-label" for="delete-{{_id}}">
-                          <i class="fas fa-trash-alt"></i>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
+                  <textarea type="text" class="form-control" name="new-todo" placeholder="Next stuff!"></textarea>
                 </li>
-              {{/each}}
-              <button type="submit" class="btn">Save</button>
-            </ul>
-          </form>
+                {{#each toDos}}
+                  <li class="list-group-item to-do-item">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <input type="checkbox" {{#if isDone}} checked="checked" {{/if}} id= {{_id}} name= {{_id}} value="true">
+                        </div>
+                      </div>
+                      <textarea type="text" class="form-control non-resize" name="value-{{_id}}">{{task}}</textarea>
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <input type="checkbox" id="delete-{{_id}}" name="delete-{{_id}}" value="true">
+                          <label class="form-check-label" for="delete-{{_id}}">
+                            <i class="fas fa-trash-alt"></i>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                {{/each}}
+                <button type="submit" class="btn">Save</button>
+              </ul>
+            </form>
+          </div>
         </div>
-      </div>
-    {{/each}}
-  </div>
+      {{/each}}
+    </div>
 
-</div>
+  </div>
