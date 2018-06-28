@@ -1,23 +1,25 @@
-<div class="card-body" id="new-project-container">
-  <h4 class="card-title">New Project</h5>
-    <form action="/project/new-project" method="post">
-      <div class="form-group">
-        <label for="project-name">Project Name</label>
-        <input class="form-control" id="project-name" type="text" name="name" placeholder="Change the world">
-      </div>
-      <div class="form-group">
-        <label for="project-description">Description / Notes</label>
-        <textarea class="form-control" id="project-description" type="text" name="description" placeholder="My fantastic project for making the world a better place"
-          rows="3"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="project-start-date">Start Date</label>
-        <input class="form-control" id="project-start-date" type="date" name="startDate">
-      </div>
-      <div class="form-group">
-        <label for="project-completion-date">Planned Completion</label>
-        <input class="form-control" id="project-completion-date" type="date" name="plannedCompletion">
-      </div>
-      <button type="submit" class="btn btn-outline-light">Create Project</button>
-    </form>
+<div class="content-overlay card text-white" id="new-project-container">
+  <div class="card-body">
+    <h4 class="card-title">New Project</h5>
+      <form action="/project/new-project" method="post">
+        <div class="form-group">
+          <label for="project-name">Project Name</label>
+          <input class="form-control" id="project-name" type="text" name="name" placeholder="Change the world">
+        </div>
+        <div class="form-group">
+          <label for="project-description">Description / Notes</label>
+          <textarea class="form-control" id="project-description" type="text" name="description" placeholder="My fantastic project for making the world a better place"
+            rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="project-start-date">Start Date</label>
+          <input class="form-control" id="project-start-date" type="date" name="startDate">
+        </div>
+        <div class="form-group">
+          <label for="project-completion-date">Planned Completion</label>
+          <input class="form-control" id="project-completion-date" type="date" name="plannedCompletion">
+        </div>
+        <button type="submit" class="btn btn-outline-light">Create Project</button>
+      </form>
+  </div>
 </div>

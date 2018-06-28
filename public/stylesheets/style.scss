@@ -93,7 +93,6 @@ a {
 }
 
 .content-overlay {
-  background-color: rgb(111, 114, 117) !important;
   width: 700px;
   padding: 30px;
 }
@@ -114,6 +113,12 @@ h4.card-title {
 }
 
 #new-project-container {
+  background-color: rgb(111, 114, 117) !important;
+  display: none;
+}
+
+#new-package-container {
+  background-color: #50858b !important;
   display: none;
 }
 

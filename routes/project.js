@@ -33,13 +33,12 @@ function createAndSaveNewProject(project, userId) {
 }
 //#endregion
 
+//#region edit package to-dos
 router.post("/modifyContent/:projectId/:packageId", (req, res, next) => {
   let deletedItems = [];
   let checkedItems = [];
   let values = [];
   let newTodo;
-
-  console.log("BODY WITH TEXTAREA", req.body);
 
   for (var key in req.body) {
     if (key.includes("delete")) deletedItems.push(key.slice(7));
@@ -57,7 +56,8 @@ router.post("/modifyContent/:projectId/:packageId", (req, res, next) => {
       if (deletedItems.includes(currId)) {
         toDos.id(todo._id).remove();
         continue;
-      } else if (checkedItems.includes(todo._id.toString())) todo.isDone = true;
+      }
+      if (checkedItems.includes(todo._id.toString())) todo.isDone = true;
       values.forEach(value => {
         if (value._id === currId) {
           todo.task = value.task;
@@ -71,5 +71,30 @@ router.post("/modifyContent/:projectId/:packageId", (req, res, next) => {
     });
   });
 });
+//#endregion
+
+//#region add package
+router.post("/new-package/:projectId", (req, res, next) => {
+  let projectId = req.params.projectId;
+  const { name, description, deadline } = req.body;
+  let toDos = [];
+  for (var key in req.body) {
+    let currVal = req.body[key];
+    if (key.includes("todo") && currVal) toDos.push({ task: currVal });
+  }
+  createAndSaveNewPackage({ name, description, deadline }, toDos, projectId).then(package => {
+    res.redirect(`/project/show/${projectId}`);
+  });
+});
+
+function createAndSaveNewPackage(package, toDos, projectId) {
+  const newPackage = new TaskPackage({ ...package, toDos });
+  return Promise.all([
+    newPackage.save(),
+    Project.findByIdAndUpdate(projectId, { $push: { _taskPackages: newPackage._id } })
+  ]).catch(err => console.log("an error occured when trying to save a new package", err));
+}
+
+//#endregion
 
 module.exports = router;

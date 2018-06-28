@@ -12,12 +12,10 @@
     crossorigin="anonymous">
 </head>
 
-<body>
+<body pt-5>
 
   <section class="overlay" id="overlay-container">
-    <div class="content-overlay card text-white bg-secondary">
-      {{> newproject}}
-    </div>
+    {{> newpackage}} {{> newproject}}
   </section>
 
   {{#if user}}
@@ -53,17 +51,17 @@
         </ul>
       </div>
     </nav>
-    <section class="container-fluid">
   {{/if}}
 
-  {{{body}}}
+  <section class="container-fluid  pt-3">
+    {{{body}}}
   </section>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-    crossorigin="anonymous"></script>
+  <script src=" https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo "
+    crossorigin="anonymous "></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js " integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T "
+    crossorigin="anonymous "></script>
   <script src='/javascripts/script.js'></script>
 </body>
 
