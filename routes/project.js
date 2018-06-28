@@ -97,12 +97,13 @@ function createAndSaveNewPackage(package, toDos, projectId) {
 
 //#endregion
 
-//#region remove package
-router.get("/package/delete/:packageId", (req, res, next) => {
+//#region remove task-package
+router.get("/package/delete/:projectId/:packageId", (req, res, next) => {
+  let projectId = req.params.projectId;
   let packageId = req.params.packageId;
   console.log("REMOVE", packageId);
   TaskPackage.findByIdAndRemove(packageId).then(_ => {
-    // res.
+    res.redirect(`/project/show/${projectId}`);
   });
 });
 //#endregion

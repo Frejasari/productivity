@@ -13,9 +13,14 @@
     <div class="col-sm-6 col-xl-4 top-buffer">
       <div class=" card bg-light">
         <div class="card-header card-to-dos-header">
+
           <h4 class="d-inline">{{this.name}}</h4>
-          <a class="font-weight-light float-right small align-baseline" data-toggle="modal" href="#delete-popup-{{this._id}}">DELETE</a>
-          {{> deletepackagedialog this}}
+          <div class="float-right text-right">
+            <a class="font-weight-light small align-baseline text-right" href="/project/package/delete/{{@root.project._id}}/{{this._id}}">DELETE</a>
+            </br>
+            <a class="font-weight-light small align-baseline text-right" href="/project/package/edit/{{@root.project._id}}/{{this._id}}">EDIT</a>
+          </div>
+          <p class="card-text">{{this.description}}</p>
         </div>
         <form action="/project/modifyContent/{{@root.project._id}}/{{this._id}}" method="POST">
           <ul class="list-group list-group-flush card-to-dos">
