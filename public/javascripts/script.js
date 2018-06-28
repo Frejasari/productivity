@@ -6,6 +6,11 @@ $(document).ready(function() {
   let overlayContainer = $("#overlay-container");
   let addPackageButton = $("#add-new-package-btn");
   let toDoGroupInOverlay = $("#to-do-group");
+  let closingX = $(".close-x");
+
+  closingX.click(() => {
+    closeOverlay();
+  });
 
   createNewProjectButton.click(() => {
     overlayContainer.css("display", "flex");
@@ -24,12 +29,7 @@ $(document).ready(function() {
 
   overlayContainer.click(function(e) {
     if (e.target === this) {
-      overlayContainer.hide();
-      $("#new-project-container").hide();
-      $("#new-package-container").hide();
-      $("#new-idea-container").hide();
-
-      // overlayContainer.children().hide(); WHY IS IT NOT WORKING?
+      closeOverlay();
     }
   });
 
@@ -38,6 +38,14 @@ $(document).ready(function() {
   });
 
   if (startDatePicker) startDatePicker.val(new Date().toDateInputValue());
+
+  function closeOverlay() {
+    overlayContainer.hide();
+    $("#new-project-container").hide();
+    $("#new-package-container").hide();
+    $("#new-idea-container").hide();
+    // overlayContainer.children().hide(); WHY IS IT NOT WORKING?
+  }
 });
 
 Date.prototype.toDateInputValue = function() {
