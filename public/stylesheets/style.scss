@@ -121,6 +121,7 @@ h4.card-title {
   background-color: #50858b !important;
   display: none;
 }
+<<<<<<< HEAD
 
 .top-buffer {
   margin-top: 20px;
@@ -129,3 +130,13 @@ h4.card-title {
 .non-resize {
   resize: none;
 }
+=======
+.myNavItem{
+  color: grey;
+  align-self: center;
+  font-size: 1.5rem;
+}
+.myNavItem:hover{
+  color: #bbc1c7;
+}
+>>>>>>> added settings icon to layout
