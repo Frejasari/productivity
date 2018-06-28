@@ -1,15 +1,20 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
+body{
+  background-image: url("/images/landingPagePic.jpg");
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat;
+}
 a {
   color: #00b7ff;
 }
 .flexContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
 }
 .profileTop {
-  padding: 0% 10%;
+  padding: 2% 1% 0% 1%;
 }
 .flexColumn {
   flex-direction: column;
