@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
+const TaskPackage = require("../models/TaskPackage");
 
 router.get("/", (req, res, next) => {
   User.findOne({ username: req.user.username }).then(user => {
@@ -8,6 +9,22 @@ router.get("/", (req, res, next) => {
   });
 });
 
+//#region create new idea
+
+router.post("/new-idea", (req, res, next) => {
+  const { name, description } = req.body;
+  createAndSaveNewIdea({ name, description }, req.user._id).then(package => {
+    res.redirect(`/profile`);
+  });
+});
+function createAndSaveNewIdea(package, userId) {
+  const newIdea = new TaskPackage(package);
+  return Promise.all([newIdea.save(), User.findByIdAndUpdate(userId, { $push: { _ideas: newIdea._id } })]).catch(err =>
+    console.log("an error occured when trying to save a new idea", err)
+  );
+}
+
+//#endregion
 router.get("/user-settings/:userId", (req, res, next) => {
   let parentSite;
   req.rawHeaders.forEach( element => {

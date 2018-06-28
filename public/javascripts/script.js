@@ -2,34 +2,40 @@ $(document).ready(function() {
   let startDatePicker = $("#project-start-date");
   let createNewProjectButton = $(".new-project");
   let createNewPackageButton = $(".new-task-package");
+  let createNewIdeaButton = $("#new-idea");
   let overlayContainer = $("#overlay-container");
   let addPackageButton = $("#add-new-package-btn");
-  let toDoGroupInOverlay = $('#to-do-group');
+  let toDoGroupInOverlay = $("#to-do-group");
 
   createNewProjectButton.click(() => {
     overlayContainer.css("display", "flex");
     $("#new-project-container").show();
   });
-  createNewPackageButton.click(()=>{
-    console.log("CLICK!")
 
+  createNewIdeaButton.click(() => {
+    overlayContainer.css("display", "flex");
+    $("#new-idea-container").show();
+  });
+
+  createNewPackageButton.click(() => {
     overlayContainer.css("display", "flex");
     $("#new-package-container").show();
-  })
+  });
 
   overlayContainer.click(function(e) {
     if (e.target === this) {
       overlayContainer.hide();
       $("#new-project-container").hide();
       $("#new-package-container").hide();
+      $("#new-idea-container").hide();
 
       // overlayContainer.children().hide(); WHY IS IT NOT WORKING?
     }
   });
 
-  addPackageButton.click(function(e){
-    toDoGroupInOverlay.append(createToDoInputHTML(toDoGroupInOverlay.children().length+1))
-  })
+  addPackageButton.click(function(e) {
+    toDoGroupInOverlay.append(createToDoInputHTML(toDoGroupInOverlay.children().length + 1));
+  });
 
   if (startDatePicker) startDatePicker.val(new Date().toDateInputValue());
 });
@@ -40,12 +46,12 @@ Date.prototype.toDateInputValue = function() {
   return local.toJSON().slice(0, 10);
 };
 
-function createToDoInputHTML(childNr){
- return `<div class="form-group">
+function createToDoInputHTML(childNr) {
+  return `<div class="form-group">
   <label class="sr-only" for="todo-${childNr}">To-Do</label>
   <textarea class="form-control non-resize" id="todo-${childNr}" type="text" name="todo-${childNr}" placeholder="Go for a walk in the wild"
     ></textarea>
-  </div>`
+  </div>`;
 }
 
 // make textarea expand dynamically

@@ -1,0 +1,18 @@
+<div class="content-overlay card text-white" id="new-idea-container">
+  <div class="card-body">
+    <h4 class="card-title">New Idea</h5>
+      <p>An Idea is something global: You can use it to store everything that comes in your mind!</p>
+      <form action="/profile/new-idea" method="post">
+        <div class="form-group">
+          <label for="task-name">Idea</label>
+          <input class="form-control" id="task-name" type="text" name="name" placeholder="Save a caterpillar">
+        </div>
+        <div class="form-group">
+          <label for="project-description">Description / Notes</label>
+          <textarea class="form-control non-resize" id="project-description" type="text" name="description" placeholder="One day it will turn into a butterfly"
+            rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-light btn-block">Save Idea</button>
+      </form>
+  </div>
+</div>
