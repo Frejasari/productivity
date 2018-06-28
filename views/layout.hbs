@@ -19,7 +19,7 @@
   </section>
 
   {{#if user}}
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
       <a class="navbar-brand" href="/profile">
         <img src="{{user.imgUrl}}" width="30" height="30" alt="">
       </a>
@@ -54,7 +54,7 @@
     </nav>
   {{/if}}
 
-  <section class="container-fluid  pt-3">
+  <section class="container-fluid  pt-3 mt-5 mb-3">
     {{{body}}}
   </section>
   <!-- Optional JavaScript -->
