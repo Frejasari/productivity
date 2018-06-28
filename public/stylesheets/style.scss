@@ -1,6 +1,6 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
-body{
+body {
   background-image: url("/images/landingPagePic.jpg");
   background-size: 100vw 100vh;
   background-repeat: no-repeat;
@@ -147,6 +147,9 @@ h4.card-title {
 }
 
 // project page
+.opacity-95 {
+  opacity: 0.95;
+}
 
 .unchecked-task {
   background-color: #c3b7c0;
