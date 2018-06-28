@@ -1,0 +1,35 @@
+<div class="card-body" id="change-settings-container">
+  <h4 class="card-title">Edit your information</h5>
+    <form action="/profile/user-settings/{{user._id}}" method="post">
+      <div class="form-group">
+        <label for="ChangeUsername">Username</label>
+        <input class="form-control" id="ChangeUsername" type="text" name="username" value={{user.username}}>
+      </div>
+      <div class="form-group">
+        <label for="ChangeEmail">E-Mail</label>
+        <input class="form-control" id="ChangeEmail" type="text" name="email" value={{user.email}}
+          rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="ChangePassword">New password</label>
+        <input class="form-control" id="ChangePassword" type="password" name="newPassword">
+      </div>
+      <div class="form-group">
+        <label for="ChangePassword2">Confirm new password</label>
+        <input class="form-control" id="ChangePassword2" type="password" name="newPasswordConfirm">
+      </div>
+      <div class="form-group">
+        <label for="ChangeProfilepic">Profile picture</label>
+        <input class="form-control" id="ChangeProfilepic" type="text" name="imgUrl" value={{user.imgUrl}}>
+      </div>
+      <div class="input-group mb-3">
+        <label class="sr-only" for="current-password">Password</label>
+        <input type="password" class="form-control" id="current-password" name="password" placeholder="Enter current password to update">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit">Update</button>
+        </div>
+      </div>
+      {{!-- <button type="submit" class="btn">Update</button> --}}
+    </form>
+</div>
+
