@@ -129,11 +129,52 @@ h4.card-title {
 .non-resize {
   resize: none;
 }
-.myNavItem{
+.myNavItem {
   color: grey;
   align-self: center;
   font-size: 1.5rem;
 }
-.myNavItem:hover{
+.myNavItem:hover {
   color: #bbc1c7;
+}
+
+// project page
+
+.unchecked-task {
+  background-color: #c3b7c0;
+}
+.unchecked-task-input {
+  background-color: #d4ccd2;
+}
+.unchecked-task-input:focus {
+  background-color: #ddd6db;
+}
+.checked-task {
+  background-color: #a9dbb8;
+}
+.checked-task-input {
+  background-color: #c8e7d2;
+}
+.checked-task-input:focus {
+  background-color: #d8eedf;
+}
+
+.new-task-input:focus {
+  background-color: white;
+}
+
+.card-to-dos li,
+.new-task-input,
+.card-to-dos-header {
+  background-color: #f0f1f2;
+}
+
+.btn-to-do-save:hover,
+.btn-project-view:hover {
+  background-color: #999a9b;
+  border-color: #999a9b;
+}
+
+.btn-project-view {
+  width: 12em;
 }

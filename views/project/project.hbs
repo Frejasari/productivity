@@ -3,37 +3,38 @@
 <div class="row align-items-center">
   <h1 class="col-12 col-md-6 text-center ">{{project.name}}</h1>
   <div class="col-6 col-md-3 text-center">
-    <button class="btn btn-secondary new-task-package" href="/project/new-package">Add Task-Package </button>
+    <button class="btn btn-outline-secondary new-task-package btn-project-view" href="/project/new-package">Add Task-Package </button>
     {{!-- TODO : ADD MEMBER --}}
   </div>
   <div class="col-6 col-md-3 text-center">
-    <a class="btn btn-secondary" href="/project/add-member">Add Member</a>
+    <a class="btn btn-outline-secondary btn-project-view" href="/project/add-member">Add Member</a>
   </div>
 </div>
 <div class="row">
   {{#each packages}}
     <div class="col-sm-6 col-xl-4 top-buffer">
       <div class=" card bg-light">
-        <div class="card-header">
+        <div class="card-header card-to-dos-header">
           <h4>{{this.name}}</h5>
 
         </div>
         <form action="/project/modifyContent/{{@root.project._id}}/{{this._id}}" method="POST">
-          <ul class="list-group list-group-flush">
+          <ul class="list-group list-group-flush card-to-dos">
             <li class="list-group-item to-do-item border-0">
-              <textarea type="text" class="form-control" name="new-todo" placeholder="Next stuff!"></textarea>
+              <textarea type="text" class="form-control new-task-input" name="new-todo" placeholder="Next stuff!"></textarea>
             </li>
             {{#each toDos}}
               <li class="list-group-item to-do-item border-0">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <div class="input-group-text">
+                    <div class="input-group-text  {{#if isDone}}checked-task {{else}} unchecked-task {{/if}}">
                       <input type="checkbox" {{#if isDone}} checked="checked" {{/if}} id= {{_id}} name= {{_id}} value="true">
                     </div>
                   </div>
-                  <textarea type="text" class="form-control non-resize" name="value-{{_id}}">{{task}}</textarea>
+                  <textarea type="text" class="form-control non-resize {{#if isDone}} checked-task-input {{else}} unchecked-task-input {{/if}}"
+                    name="value-{{_id}}">{{task}}</textarea>
                   <div class="input-group-append">
-                    <div class="input-group-text">
+                    <div class="input-group-text {{#if isDone}}checked-task{{else}} unchecked-task {{/if}}">
                       <input type="checkbox" id="delete-{{_id}}" name="delete-{{_id}}" value="true">
                       <label class="form-check-label" for="delete-{{_id}}">
                         <i class="fas fa-trash-alt"></i>
@@ -44,7 +45,7 @@
               </li>
             {{/each}}
             <li class="list-group-item to-do-item border-0">
-              <button type="submit" class="btn btn-outline-secondary btn-block">Save</button>
+              <button type="submit" class="btn btn-outline-secondary btn-block btn-to-do-save">Save</button>
             </li>
           </ul>
         </form>
