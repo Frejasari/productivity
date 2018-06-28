@@ -110,6 +110,17 @@ a {
   }
 }
 
+.close-x {
+  cursor: pointer;
+  top: 20px;
+  right: 23px;
+  font-size: 25px;
+}
+
+.close-x:hover {
+  font-size: 30px;
+}
+
 h4.card-title {
   margin-bottom: 1.5rem !important;
 }
