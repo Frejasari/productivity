@@ -10,6 +10,7 @@ const bcryptSalt = 10;
 
 authRoutes.post(
   "/login",
+  ensureLogin.ensureLoggedOut("/profile"),
   passport.authenticate("local", {
     successRedirect: "/profile/",
     failureRedirect: "/",
@@ -21,11 +22,11 @@ authRoutes.post(
 // authRoute;
 
 //#region signup
-authRoutes.get("/signup", (req, res, next) => {
+authRoutes.get("/signup", ensureLogin.ensureLoggedOut("/profile"), (req, res, next) => {
   res.render("auth/signup");
 });
 
-authRoutes.post("/signup", (req, res, next) => {
+authRoutes.post("/signup", ensureLogin.ensureLoggedOut("/profile"), (req, res, next) => {
   const { username, email, password } = req.body;
 
   if (username === "" || password === "") {
@@ -59,7 +60,7 @@ authRoutes.post("/signup", (req, res, next) => {
 //#endregion
 
 //#region logout
-authRoutes.get("/logout", (req, res) => {
+authRoutes.get("/logout", ensureLogin.ensureLoggedIn("/"), (req, res) => {
   req.logout();
   res.redirect("/");
 });

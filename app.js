@@ -9,6 +9,7 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
+const ensureLogin = require("connect-ensure-login");
 
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
@@ -96,10 +97,10 @@ const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
 
 const profileRoutes = require("./routes/profile");
-app.use("/profile", profileRoutes);
+app.use("/profile", ensureLogin.ensureLoggedIn("/"), profileRoutes);
 
 const projectRoutes = require("./routes/project");
-app.use("/project", projectRoutes);
+app.use("/project", ensureLogin.ensureLoggedIn("/"), projectRoutes);
 //#endregion
 
 module.exports = app;
