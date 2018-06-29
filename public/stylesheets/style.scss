@@ -2,14 +2,14 @@
 
 body {
   background-image: url("/images/landingPagePic.jpg");
-  background-size: 100vw 100vh;
-  background-repeat: no-repeat;
-  display: relative;
-}
-#settingsBackground{
-  background-image: url("/images/settingsPic.jpg");
+  background-attachment: fixed;
   background-size: cover;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+#settingsBackground {
+  background-image: url("/images/settingsPic.jpg");
 }
 a {
   color: #00b7ff;
@@ -222,18 +222,18 @@ h4.card-title {
   width: 12em;
 }
 
-#changeUserInfoError{
+#changeUserInfoError {
   color: rgb(131, 25, 25);
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-.settingsContainer{
+.settingsContainer {
   width: 50%;
 }
 
 @media (max-width: 768px) {
-  .settingsContainer{
+  .settingsContainer {
     width: 100%;
   }
 }
