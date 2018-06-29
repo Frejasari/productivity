@@ -6,7 +6,7 @@ passport.serializeUser((loggedInUser, cb) => {
 
 passport.deserializeUser((userIdFromSession, cb) => {
   User.findById(userIdFromSession)
-    .populate("_projects")
+    .populate({ path: "_projects", populate: { path: "_taskPackages" } })
     .populate("_ideas")
     .then(user => {
       cb(null, user);
