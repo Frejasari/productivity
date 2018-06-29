@@ -1,31 +1,78 @@
 {{!-- display the user's information (name, ...) and the user's projects --}}
 {{!-- header block --}}
-<div class="flexContainer">
-  <div class="profileTop">
-    <img id="profilePic" src={{user.imgUrl}} />
-  </div>
-  <div class="profileTop">
-    <h2>{{user.username}}</h2>
-    <p>{{user.email}}</p>
+<div class="row align-items-center">
+  <div class="col-12">
+    <div class="opacity-95 card bg-light">
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-auto m-auto">
+          <img id="profilePic" src= {{user.imgUrl}} />
+        </div>
+        <div class="col">
+          <h2>{{user.username}}</h2>
+          <p>{{user.email}}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-{{!-- middle block --}}
-<div class="flexContainer flexColumn">
-  <ul id="profileListContainer" class="profileList">
-    {{#each user._projects}}
-      <li class="profileSiteLi">
-        <a class="btn btn-primary btn-block project" href="/project/show/{{this._id}}" role="button">{{this.name}}</a>
-      </li>
-    {{/each}}
-  </ul>
-</div>
-{{!-- bottom block --}}
-<div class="flexContainer flexColumn">
-  <ul id="profileListContainer" class="profileList">
-    {{#each user._ideas}}
-      <li class="profileSiteLi">
-        <a class="btn btn-primary btn-block idea" href="/project/idea/{{this._id}}" role="button">{{this.name}}</a>
-      </li>
-    {{/each}}
-  </ul>
+<div class="row">
+  <div class="col-xl-8">
+    <div class="row">
+      <div class="col-sm-12 col-xl-12 text-center top-buffer">
+        <div class="opacity-95 idea-headline pt-2">
+          <h3 class="font-weight-light">
+            PROJECTS
+          </h3>
+          <hr class="mt-0">
+        </div>
+      </div>
+      {{#each user._projects}}
+        <div class="col-sm-6 col-xl-6 top-buffer">
+          <div class="opacity-95 card bg-light">
+            <div class="card-header card-to-dos-header">
+              <h4 class="d-inline">
+                <a href="/project/show/{{this._id}}">{{name}}</a>
+              </h4>
+              <p class="card-text">{{description}}</p>
+              <a href="/project/delete/{{this._id}} " class="card-link text-right">Delete</a>
+              <a href="#" class="card-link">Edit</a>
+            </div>
+            {{log this}}
+            <ul class="list-group list-group-flush card-to-dos">
+              {{#each _taskPackages}}
+                <li class="list-group-item">
+                  {{this.name}}
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="col-xl-4">
+    <div class="row">
+      <div class="col-sm-12 col-xl-12  text-center top-buffer">
+        <div class="opacity-95 idea-headline pt-2">
+          <h3 class="font-weight-light">
+            IDEAS
+          </h3>
+          <hr class="mt-0">
+        </div>
+      </div>
+      {{#each user._ideas}}
+        <div class=" col-sm-6 col-xl-12 top-buffer ">
+          <div class="opacity-95 card bg-light">
+            <div class=" opacity-95 card-body card-ideas">
+              <h4 class="card-title">{{name}}</h4>
+              <p class="card-text">{{description}}</p>
+              <a href="/project/idea/delete/{{@root.user._id}}/{{this._id}}" class="card-link text-right">Delete</a>
+              <a href="#" class="card-link">Edit</a>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
 </div>

@@ -9,18 +9,33 @@ body {
 a {
   color: #00b7ff;
 }
-.flexContainer {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
+
+// profile page
+
+h4 > a {
+  color: #2c2f33;
 }
-.profileTop {
-  padding: 2% 1% 0% 1%;
+
+h4 > a:hover {
+  text-decoration: none;
+  color: #65676a;
 }
-.flexColumn {
-  flex-direction: column;
-  justify-content: center;
+
+.card-ideas {
+  background-color: #afcddc;
 }
+
+.card-ideas a {
+  color: white;
+}
+.card-ideas a:hover {
+  color: #007bff;
+}
+
+.idea-headline {
+  letter-spacing: 0.0625em;
+}
+
 #settingsIcon {
   width: 25px;
 }
