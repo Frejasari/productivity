@@ -6,6 +6,11 @@ body {
   background-repeat: no-repeat;
   display: relative;
 }
+#settingsBackground{
+  background-image: url("/images/settingsPic.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+}
 a {
   color: #00b7ff;
 }
@@ -215,4 +220,20 @@ h4.card-title {
 
 .btn-project-view {
   width: 12em;
+}
+
+#changeUserInfoError{
+  color: rgb(131, 25, 25);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.settingsContainer{
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .settingsContainer{
+    width: 100%;
+  }
 }
