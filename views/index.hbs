@@ -1,32 +1,34 @@
-<h1>{{title}}</h1>
-<a href="/profile">PROFILE</a>
-<a href="/project/userName/adfkjaherID">PROJECT</a>
-<a href="/auth/logout">Logout</a>
+<h1 class="landingPageTitle">{{title}}</h1>
 
+<body>
+  <div class="card-body">
+  <h4 class="card-title">Login</h4>
 
-<h2>Login</h2>
+    <form action="/auth/login" method="post">
 
-<form action="/auth/login" method="POST" id="form-container">
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
+      <div class="settingsContainer">
+        <div class="form-group">
+          <label for="loginUsername">Username</label>
+          <input class="form-control" idr="loginUsername" type="text" name="loginUsername">
+        </div>
 
-  <br>
-  <br>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input class="form-control" id="loginPassword" type="password" name="loginPassword">
+        </div>
 
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
-  <br>
-  {{#if message }}
-    <div class="error-message">{{ message }}</div>
-  {{/if}}
+        <br>
+        {{#if message }}
+          <div class="error-message">{{ message }}</div>
+        {{/if}}
 
-  <br>
-  <br>
-
-  <button>Login</button>
-
-  <p class="account-message">
-    Don't have an account yet?
-    <a href="/auth/signup">Signup</a>
-  </p>
-</form>
+        <button>Login</button>
+       
+        <p class="account-message">
+          <br> 
+          Don't have an account yet?
+          <a href="/auth/signup">Signup</a>
+        </p>
+    </form>
+  </div>
+</body>
