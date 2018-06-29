@@ -11,6 +11,12 @@ body {
 #settingsBackground {
   background-image: url("/images/settingsPic.jpg");
 }
+
+.logged-in-container {
+  background-image: url("/images/landingPagePic.jpg");
+  background-position: left top;
+}
+
 a {
   color: #00b7ff;
 }
@@ -183,6 +189,13 @@ h4.card-title {
   opacity: 0.95;
 }
 
+.auth-container {
+  background-color: white;
+  opacity: 0.85;
+  border-radius: 1.5rem;
+  display: inline-block;
+}
+
 .unchecked-task {
   background-color: #c3b7c0;
 }
@@ -208,7 +221,8 @@ h4.card-title {
 
 .card-to-dos li,
 .new-task-input,
-.card-to-dos-header {
+.card-to-dos-header,
+.profile-card {
   background-color: #f0f1f2;
 }
 
@@ -252,7 +266,7 @@ input:-webkit-autofill {
   -webkit-box-shadow: inset 0 0 0px 9999px white;
 }
 
-.landingPageTitle{
+.landingPageTitle {
   text-align: center;
   color: #212529e8;
 }
