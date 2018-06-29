@@ -33,6 +33,22 @@ function createAndSaveNewProject(project, userId) {
 }
 //#endregion
 
+//#region delete Project
+router.get("/delete/:projectId", (req, res, next) => {
+  Project.findByIdAndRemove(req.params.projectId).then(_ => {
+    res.redirect("/profile");
+  });
+});
+//#endregion
+
+//#region delete Idea
+router.get("/idea/delete/:userId/:ideaId", (req, res, next) => {
+  TaskPackage.findByIdAndRemove(req.params.ideaId).then(_ => {
+    res.redirect(`/profile`);
+  });
+});
+//#endregion
+
 //#region edit package to-dos
 router.post("/modifyContent/:projectId/:packageId", (req, res, next) => {
   let deletedItems = [];
@@ -101,7 +117,6 @@ function createAndSaveNewPackage(package, toDos, projectId) {
 router.get("/package/delete/:projectId/:packageId", (req, res, next) => {
   let projectId = req.params.projectId;
   let packageId = req.params.packageId;
-  console.log("REMOVE", packageId);
   TaskPackage.findByIdAndRemove(packageId).then(_ => {
     res.redirect(`/project/show/${projectId}`);
   });
