@@ -123,13 +123,15 @@ const users = [
   }
 ];
 
-User.create(users)
+User.deleteMany()
+  .then(() => Project.deleteMany())
+  .then(() => Package.deleteMany())
+  .then(() => User.create(users))
   .then(users => {
     // add user-ids as collaborators to projects array
     projects[0]._collaborators.push(users[0]._id, users[1]._id, users[2]._id);
     projects[1]._collaborators.push(users[0]._id, users[1]._id);
     projects[2]._collaborators.push(users[0]._id);
-
     // push project into projects array of each teammate
     Project.create(projects).then(projects => {
       projects.forEach(project => {
@@ -149,6 +151,7 @@ User.create(users)
                 console.log("response", response);
                 User.update({ username: users[1].username }, { $push: { _ideas: package[1] } }).then(response => {
                   console.log("Database was successfully seeded!");
+                  mongoose.connection.close();
                 });
               });
             });
